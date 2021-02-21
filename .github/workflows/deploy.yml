@@ -1,0 +1,27 @@
+name: Deployment
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    name: Deploy to production
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install Automate
+        run: curl -LSs https://automate-deployer.com/installer.php | php
+      - name: Add server SSH key to known_hosts
+        run: |
+          mkdir ~/.ssh
+          chmod 700 ~/.ssh
+          ssh-keyscan -t rsa jacik.cz > ~/.ssh/known_hosts
+      - name: Run automate deploy
+        run: |
+          echo "${{secrets.DEPLOY_KEY}}" > deploy.key
+          chmod 600 deploy.key
+          php automate.phar deploy production

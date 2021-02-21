@@ -1,0 +1,30 @@
+repository: git@github.com:foxycode/foe-tips.git
+
+platforms:
+  production:
+    default_branch: master
+    max_releases: 3
+    servers:
+      jacik.cz:
+        host: jacik.cz
+        user: foe
+        ssh_key: deploy.key
+        path: ~/wwwroot/
+
+#shared_files:
+#  - app/Config/config.local.neon
+
+#shared_folders:
+#  - var
+
+on_deploy:
+  - "composer install --no-interaction --no-progress --no-suggest --no-dev --optimize-autoloader"
+
+post_deploy:
+  - ln -s ../../../../shared/app/Config/local.neon app/Config/local.neon
+  - rm -r var/log
+  - ln -s ../../../shared/var/log var/log
+  - rm ../../current
+  - ln -s "releases/$(basename `pwd`)" ../../current
+  - rm -rf var/temp/*
+  - "bin/console orm:generate-proxies -q"
