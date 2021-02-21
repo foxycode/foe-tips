@@ -1,0 +1,22 @@
+{varType string $compareBy}
+{block content}
+
+    <h1>
+        {if $compareBy === 'attackBoostAttacker'}
+            Útočný bonus útočníka
+        {elseif $compareBy === 'defenseBoostAttacker'}
+            Obranný bonus útočníka
+        {elseif $compareBy === 'goods'}
+            Zboží
+        {elseif $compareBy === 'forgePoints'}
+            Body výzkumu
+        {else}
+            Vše
+        {/if}
+    </h1>
+
+    {control buildingCompareFilter}
+
+    {control buildingCompareGrid}
+
+{/block}

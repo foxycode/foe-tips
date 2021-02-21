@@ -1,0 +1,42 @@
+{block content}
+<h1>{$event['name']}</h1>
+
+<h3>Hlavní úkolová řada</h3>
+<ol>
+    <li n:foreach="$event['mainQuestLine'] as $quest">
+        {$quest->firstTask->text}
+        {if $quest->firstAlternateTask}
+            <strong> NEBO </strong>
+            {$quest->firstAlternateTask->text}
+        {/if}
+
+        {if $quest->secondTask}
+            <strong> A </strong><br>
+            {$quest->secondTask->text}
+            {if $quest->secondAlternateTask}
+                <strong> NEBO </strong>
+                {$quest->secondAlternateTask->text}
+            {/if}
+        {/if}
+    </li>
+</ol>
+
+<h3>Denní úkoly</h3>
+<ol>
+    <li n:foreach="$event['dailyQuestLine'] as $quest">
+        {$quest->firstTask->text}
+        {if $quest->firstAlternateTask}
+            <strong> NEBO </strong>
+            {$quest->firstAlternateTask->text}
+        {/if}
+
+        {if $quest->secondTask}
+            <strong> A </strong><br>
+            {$quest->secondTask->text}
+            {if $quest->secondAlternateTask}
+                <strong> NEBO </strong>
+                {$quest->secondAlternateTask->text}
+            {/if}
+        {/if}
+    </li>
+</ol>

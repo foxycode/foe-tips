@@ -1,0 +1,6 @@
+nettrine.dbal:
+    connection:
+        host: mysql
+        dbname: app
+        user: app
+        password: xxx

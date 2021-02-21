@@ -1,0 +1,30 @@
+application:
+    errorPresenter: Error
+    mapping:
+        *: [App, Modules\*, Presenters\*Presenter]
+
+session:
+    expiration: 14 days
+    savePath: "%appDir%/../var/sessions"
+
+di:
+    export:
+        parameters: no
+        tags: no
+
+search:
+    forms:
+        in: %appDir%/Forms
+        classes:
+            - App\Forms\*FormFactory
+    grids:
+        in: %appDir%/Grids
+    modelFacades:
+        in: %appDir%/Model/Facades
+
+services:
+    router: App\Router\RouterFactory::createRouter
+
+includes:
+    - console.neon
+    - doctrine.neon

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+BIN_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd)
+
+docker run --rm -it \
+    -v ${BIN_DIR}/../var/composer:/.composer \
+    -v ${BIN_DIR}/..:/app \
+    --workdir /app \
+    --user $(id -u):$(id -g) \
+    sunfoxcz/php:7.4-cli composer "$@"
