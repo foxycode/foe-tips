@@ -12,7 +12,7 @@ platforms:
         path: /apps/foe/www
 
 shared_files:
-  - app/Config/config.local.neon
+  - app/Config/local.neon
 
 shared_folders:
   - var/log
